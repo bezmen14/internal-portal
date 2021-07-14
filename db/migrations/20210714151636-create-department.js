@@ -1,38 +1,31 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Employees', {
+    await queryInterface.createTable('Departments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_name: {
-        type: Sequelize.STRING,
+      parent_department_id: {
         allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
-      employee_name: {
-        type: Sequelize.STRING,
+      employee_id: {
         allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      role_id: {
+        primaryKey: true,
         type: Sequelize.INTEGER,
-        defaultValue: 2,
         references: {
           model:{
-            tableName: 'Roles',
+            tableName: 'Employees',
           },
           key:'id'
         },
+      },
+      department_name: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -42,7 +35,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      epm_mark_delete: {
+      dep_mark_delete: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
         defaultValue: false,
@@ -50,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Employees');
+    await queryInterface.dropTable('Departments');
   }
 };

@@ -1,38 +1,49 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Employees', {
+    await queryInterface.createTable('Teams', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      team_name: {
+        type: Sequelize.STRING
       },
-      employee_name: {
-        type: Sequelize.STRING,
+      project_id: {
         allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      role_id: {
-        type: Sequelize.INTEGER,
-        defaultValue: 2,
+        type: Sequelize.INTEGER,   
         references: {
           model:{
-            tableName: 'Roles',
+            tableName: 'Projects',
           },
           key:'id'
         },
+      },
+      data_start: {
+        allowNull: false,
+        type: Sequelize.DATE   
+      },
+      data_end: {
+        allowNull: false,
+        type: Sequelize.DATE   
+      },
+      employee_id: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        references: {
+          model:{
+            tableName: 'Employees',
+          },
+          key:'id'
+        },
+      },
+      proj_mark_delete: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
@@ -41,15 +52,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      epm_mark_delete: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Employees');
+    await queryInterface.dropTable('Teams');
   }
 };
