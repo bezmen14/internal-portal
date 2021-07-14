@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const hbs = require('hbs');
 const userRouter = require('./routes/user.router');
+const indexRouter = require('./routes/index.router');
 
 // const redis = require('redis');
 // const session = require('express-session');
@@ -14,12 +15,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 // const { secretKey } = process.env;
 
-
 // view engine setup
 app.set('view engine', 'hbs');
 app.set('cookieName', 'sid');
-hbs.registerPartials(path.join(process.env.PWD, 'src', 'views', 'partials'));
-app.set('views', path.join(process.env.PWD, 'src', 'views'));
+hbs.registerPartials(path.join(process.env.PWD, 'views', 'partials'));
+app.set('views', path.join(process.env.PWD, 'views'));
 
 // app.use(session({
 //   name: app.get('cookieName'),
@@ -41,6 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(process.env.PWD, 'public')));
 
 app.use('/user', userRouter);
+app.use('/', indexRouter);
 
 app.listen(PORT, () => {
   console.log('Server has been started on PORT:', PORT);
