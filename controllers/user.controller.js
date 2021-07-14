@@ -36,7 +36,7 @@ const userSignup = async (req, res) => {
     // установит в куку идентификатор с id из БД
     req.session.user = {
       id: newUser.id,
-      name: newUser.name,
+      name: newUser.user_name,
     };
     return res.redirect('/');
   }
@@ -55,7 +55,7 @@ const userSignin = async (req, res) => {
     if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
       req.session.user = {
         id: currentUser.id,
-        name: currentUser.name,
+        name: currentUser.user_name,
       };
       return res.redirect('/');
     }
