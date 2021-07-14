@@ -1,8 +1,8 @@
-// require('dotenv').config();
-// const bcrypt = require('bcrypt');
-// const db = require('../db/models');
+require('dotenv').config();
+const bcrypt = require('bcrypt');
+const db = require('../db/models');
 
-// const { saltRounds } = process.env;
+const { saltRounds } = process.env;
 
 const userSignupRender = (req, res) => {
   if (req.query.err) {
@@ -43,40 +43,40 @@ const userSignup = async (req, res) => {
   return res.status(418).redirect('/user/signup/?err=true');
 };
 
-// const userSignin = async (req, res) => {
-//   const { email, password } = req.body;
-//   if (email && password) {
-//     const currentUser = await db.Employee.findOne({
-//       where: {
-//         email,
-//       },
-//     });
+const userSignin = async (req, res) => {
+  const { user_name, password } = req.body;
+  if (user_name && password) {
+    const currentUser = await db.Employee.findOne({
+      where: {
+        user_name,
+      },
+    });
 
-//     if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
-//       req.session.user = {
-//         id: currentUser.id,
-//         name: currentUser.name,
-//       };
-//       return res.redirect('/');
-//     }
-//     return res.status(418).redirect('/user/signin/?err=true');
-//   }
-//   // если что-то не ввел обратно на страницу регистрации
-//   return res.status(418).redirect('/user/signin/?err=true').status(418);
-// };
+    if (currentUser && (await bcrypt.compare(password, currentUser.password))) {
+      req.session.user = {
+        id: currentUser.id,
+        name: currentUser.name,
+      };
+      return res.redirect('/');
+    }
+    return res.status(418).redirect('/user/signin/?err=true');
+  }
+  // если что-то не ввел обратно на страницу регистрации
+  return res.status(418).redirect('/user/signin/?err=true').status(418);
+};
 
-// const userSignout = async (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) return res.redirect('/');
-//     res.clearCookie(req.app.get('cookieName'));
-//     return res.redirect('/');
-//   });
-// };
+const userSignout = async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) return res.redirect('/');
+    res.clearCookie(req.app.get('cookieName'));
+    return res.redirect('/');
+  });
+};
 
 module.exports = {
   userSignupRender,
   userSigninRender,
-//   userSignup,
-//   userSignin,
-//   userSignout,
+  userSignup,
+  userSignin,
+  userSignout,
 };
