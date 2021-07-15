@@ -5,7 +5,7 @@ const {
   userSignup,
   userSignin,
   userSignout,
-} = require('../controllers/user.controller');
+} = require('../controllers/userAuth.controller');
 // const { checkAuth } = require('../middlewares/checkAuth');
 // const db = require('../db/models');
 

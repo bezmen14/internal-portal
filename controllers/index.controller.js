@@ -1,11 +1,8 @@
+const db = require('../db/models');
+
 const indexRender = (req, res) => {
   res.render('index');
 };
-
-// const departmentsRender = async (req, res) => {
-//   const allDepartment = await db.Department.findAll();
-//   res.render('departments', { departments: allDepartment });
-// };
 
 // const teamsRender = async (req, res) => {
 //   const allTeams = await db.Team.findAll();

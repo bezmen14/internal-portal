@@ -2,9 +2,9 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const hbs = require('hbs');
-const userRouter = require('./routes/user.router');
+const userRouter = require('./routes/userAuth.router');
 const indexRouter = require('./routes/index.router');
-
+const departmentRouter = require('./routes/department.router');
 // const redis = require('redis');
 // const session = require('express-session');
 // const RedisStore = require('connect-redis')(session);
@@ -41,6 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(process.env.PWD, 'public')));
 
 app.use('/user', userRouter);
+app.use('/departmens', departmentRouter);
+
 app.use('/', indexRouter);
 
 app.listen(PORT, () => {

@@ -1,12 +1,11 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Employees', {
-      employee_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       user_name: {
         type: Sequelize.STRING,
@@ -28,28 +27,28 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 2,
         references: {
-          model:{
+          model: {
             tableName: 'Roles',
           },
-          key:'role_id'
+          key: 'id',
         },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       epm_mark_delete: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
         defaultValue: false,
-      }
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Employees');
-  }
+  },
 };
