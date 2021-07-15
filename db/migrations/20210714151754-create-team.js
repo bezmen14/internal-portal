@@ -31,7 +31,6 @@ module.exports = {
       },
       employee_id: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
           model:{
@@ -40,7 +39,7 @@ module.exports = {
           key:'id'
         },
       },
-      proj_mark_delete: {
+      team_mark_delete: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
         defaultValue: false,

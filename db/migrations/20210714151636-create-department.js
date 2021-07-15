@@ -10,12 +10,10 @@ module.exports = {
       },
       parent_department_id: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER
       },
       employee_id: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
           model:{
