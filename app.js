@@ -10,7 +10,7 @@ hbs.registerPartials(path.join(__dirname + "/views/partials"));
 app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(process.env.PWD, "public")));
 
 app.get("/", (req, res) => {
   res.render("index")
@@ -23,6 +23,15 @@ app.get("/signup", (req, res) => {
 app.get("/signin", (req, res) => {
   res.render("signin");
 });
+
+app.get("/adminhome", (req, res)=>{
+  res.render("adminhome")
+});
+
+app.get("/userhome", (req, res) => {
+  res.render("userhome");
+});
+
 
 
 
