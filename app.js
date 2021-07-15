@@ -41,8 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(process.env.PWD, 'public')));
 
 app.use('/user', userRouter);
-app.use('/departmens', departmentRouter);
-
+app.use('/departments', departmentRouter);
+app.use('/teams', departmentRouter);
 app.use('/', indexRouter);
 
 app.listen(PORT, () => {

@@ -1,23 +1,23 @@
 const db = require('../db/models');
 
-const departmentsRender = async (req, res) => {
-  const allDepartment = await db.Department.findAll();
-  res.render('departments', { departments: allDepartment });
+const usersRender = async (req, res) => {
+  const allUsers = await db.Employee.findAll();
+  res.render('users', { users: allUsers });
 };
 
-const departmentsCreate = async (req, res) => {
+const usersCreate = async (req, res) => {
   try {
     const {
-      department_name,
+      user_name, employee_name, password, email,
     } = req.body;
-    if (department_name) {
-      const newDepartment = await db.Department.create(
+    if (user_name && employee_name && password && email) {
+      const newUser = await db.Employee.create(
         {
-          department_name,
+          user_name, employee_name, password, email,
         },
         { returning: true, plain: true },
       );
-      return res.status(201).json(newDepartment);
+      return res.status(201).json(newUser);
     }
     return res.sendStatus(406);
   } catch (error) {
@@ -26,6 +26,6 @@ const departmentsCreate = async (req, res) => {
 };
 
 module.exports = {
-  departmentsRender,
-  departmentsCreate,
+  usersRender,
+  usersCreate,
 };

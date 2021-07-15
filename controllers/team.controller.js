@@ -1,23 +1,23 @@
 const db = require('../db/models');
 
-const departmentsRender = async (req, res) => {
-  const allDepartment = await db.Department.findAll();
-  res.render('departments', { departments: allDepartment });
+const teamRender = async (req, res) => {
+  const allTeam = await db.Team.findAll();
+  res.render('teams', { teams: allTeam });
 };
 
-const departmentsCreate = async (req, res) => {
+const teamCreate = async (req, res) => {
   try {
     const {
-      department_name,
+      team_name,
     } = req.body;
-    if (department_name) {
-      const newDepartment = await db.Department.create(
+    if (team_name) {
+      const newTeam = await db.Team.create(
         {
-          department_name,
+          team_name,
         },
         { returning: true, plain: true },
       );
-      return res.status(201).json(newDepartment);
+      return res.status(201).json(newTeam);
     }
     return res.sendStatus(406);
   } catch (error) {
@@ -26,6 +26,6 @@ const departmentsCreate = async (req, res) => {
 };
 
 module.exports = {
-  departmentsRender,
-  departmentsCreate,
+  teamRender,
+  teamCreate,
 };
