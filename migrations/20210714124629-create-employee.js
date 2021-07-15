@@ -50,5 +50,11 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Employees');
+<<<<<<< HEAD:migrations/20210714124629-create-employee.js
   },
 };
+=======
+  }
+};
+//
+>>>>>>> 62ecb359c1c724555c02f28b9478ea9fea298c10:db/migrations/20210714124629-create-employee.js
