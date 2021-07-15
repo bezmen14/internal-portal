@@ -42,7 +42,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      epm_mark_delete: {
+      emp_mark_delete: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
         defaultValue: false,
