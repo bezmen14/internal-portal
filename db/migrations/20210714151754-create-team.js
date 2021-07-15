@@ -38,7 +38,7 @@ module.exports = {
           key: 'id',
         },
       },
-      team_mark_delete: {
+      proj_mark_delete: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
         defaultValue: false,
@@ -55,6 +55,5 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Teams');
-  }
+  },
 };
-//

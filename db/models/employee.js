@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Employee.init({
     user_name: DataTypes.STRING,
     employee_name: DataTypes.STRING,
-    emp_mark_delete: {
+    epm_mark_delete: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
       allowNull: false,
